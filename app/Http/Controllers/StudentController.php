@@ -21,4 +21,12 @@ class StudentController extends Controller
         Student::create($request->all());
         return back()->with('success', 'Student ' . $request->name . ' has been created');
     }
+
+    // show detail data
+    public function show(Student $student)
+    {
+        return view('student.show', [
+            'student' => $student
+        ]);
+    }
 }

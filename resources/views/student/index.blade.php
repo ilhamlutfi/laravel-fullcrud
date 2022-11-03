@@ -38,7 +38,7 @@
                                         <td>{{ $student->address }}</td>
                                         <td>{{ $student->email }}</td>
                                         <td class="text-center" width="20%">
-                                            <a href="" class="btn btn-secondary btn-sm">Detail</a>
+                                            <a href="{{ url('student/'.$student->id) }}" class="btn btn-secondary btn-sm">Detail</a>
                                             <a href="" class="btn btn-success btn-sm">Update</a>
                                             <a href="" class="btn btn-danger btn-sm">Delete</a>
                                         </td>

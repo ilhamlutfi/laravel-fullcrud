@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('student', [StudentController::class, 'index']);
 Route::post('student', [StudentController::class, 'store']);
+Route::get('student/{student}', [StudentController::class, 'show']);
 
 Auth::routes();
 
