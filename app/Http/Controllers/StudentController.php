@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -16,8 +16,10 @@ class StudentController extends Controller
     }
 
     // insert data
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
+        $request->validate();
+
         Student::create($request->all());
         return back()->with('success', 'Student ' . $request->name . ' has been created');
     }
@@ -28,5 +30,21 @@ class StudentController extends Controller
         return view('student.show', [
             'student' => $student
         ]);
+    }
+
+    // delete data
+    public function destroy($id)
+    {
+        Student::find($id)->delete();
+        return back()->with('success', 'Student has been deleted');
+    }
+
+    // update data
+    public function update(Student $student, StudentRequest $request)
+    {
+        $request->validate();
+
+        Student::find($student->id)->update($request->all());
+        return back()->with('success', 'Student ' . $request->name . ' has been updated');
     }
 }

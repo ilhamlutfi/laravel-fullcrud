@@ -18,9 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('student', [StudentController::class, 'index']);
-Route::post('student', [StudentController::class, 'store']);
-Route::get('student/{student}', [StudentController::class, 'show']);
+// Route::get('student', [StudentController::class, 'index']);
+// Route::post('student', [StudentController::class, 'store']);
+// Route::get('student/{student}', [StudentController::class, 'show']);
+// Route::delete('student/{id}', [StudentController::class, 'destroy']);
+// Route::put('student/{student}', [StudentController::class, 'update']);
+
+// resource hanya untuk method (index, show, store, update, destroy)
+Route::resource('student', StudentController::class)->only([
+    'index', 'show', 'store', 'update', 'destroy'
+])->middleware('auth');
 
 Auth::routes();
 
